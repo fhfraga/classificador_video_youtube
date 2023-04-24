@@ -10,6 +10,13 @@ RUN apt-get update &&\
     g++ 
 
 RUN pip install pipenv
-RUN pipenv install
+RUN pipenv install gunicorn
+RUN pipenv install Flask
+RUN pipenv install pandas
+RUN pipenv install joblib
+RUN pipenv install numpy
+RUN pipenv install scikit-learn
+RUN pipenv install lightgbm
+RUN pipenv install youtube-dlc
 
 CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
