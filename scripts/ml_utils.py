@@ -7,9 +7,9 @@ import numpy as np
 import pandas as pd
 from scipy.sparse import csr_matrix, hstack
 
-random_forest = joblib.load('../modelos/random_forest_2023_04_19.pkl.z')
-lgbm = joblib.load('../modelos/lgbm_2023_04_19.pkl.z')
-title_vec = joblib.load('../modelos/title_vectorize_2023_04_19.pkl.z')
+random_forest = joblib.load('./modelos/random_forest_2023_04_19.pkl.z')
+lgbm = joblib.load('./modelos/lgbm_2023_04_19.pkl.z')
+title_vec = joblib.load('./modelos/title_vectorize_2023_04_19.pkl.z')
 
 
 def compute_features(data):
@@ -27,7 +27,7 @@ def compute_features(data):
     del features['tempo_desde_pub']
     features = features.astype('float')
 
-    title_vec = joblib.load("../modelos/title_vectorize_2023_04_19.pkl.z")
+    title_vec = joblib.load("./modelos/title_vectorize_2023_04_19.pkl.z")
     vectorized_title = title_vec.transform(titulo)
     feature_array = hstack([features, vectorized_title])
     return feature_array
@@ -39,8 +39,8 @@ def compute_prediction(data):
     if feature_array is None:
         return 0
 
-    lgbm = joblib.load('../modelos/lgbm_2023_04_19.pkl.z')
-    random_forest = joblib.load('../modelos/random_forest_2023_04_19.pkl.z')
+    lgbm = joblib.load('./modelos/lgbm_2023_04_19.pkl.z')
+    random_forest = joblib.load('./modelos/random_forest_2023_04_19.pkl.z')
 
     probabilidade_lgbm = lgbm.predict_proba(feature_array)[:, 1]
     probabilidade_random_forest = random_forest.predict_proba(feature_array)[
