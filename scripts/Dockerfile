@@ -18,6 +18,6 @@ RUN pipenv install numpy
 RUN pipenv install scikit-learn
 RUN pipenv install lightgbm
 RUN pipenv install youtube-dlc
-RUN pipenv shell
+#RUN pipenv shell
 
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
+CMD pipenv run gunicorn --bind 0.0.0.0:$PORT wsgi 
