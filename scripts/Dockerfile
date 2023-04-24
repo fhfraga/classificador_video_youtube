@@ -9,7 +9,6 @@ RUN apt-get update &&\
     gcc \
     g++ 
 
-RUN pip install pipenv
-RUN pipenv install
+RUN pip install -r requirements.txt
 
 CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
