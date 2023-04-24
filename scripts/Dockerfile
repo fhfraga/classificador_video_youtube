@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.10-slim-buster
 COPY . /app
 WORKDIR /app
 RUN apt-get update &&\
@@ -8,6 +8,7 @@ RUN apt-get update &&\
     build-essential \
     gcc \
     g++ 
-RUN pip install -r requirements.txt
+
+RUN pipenv install
 
 CMD gunicorn --bind 0.0.0.0:$PORT wsgi 
