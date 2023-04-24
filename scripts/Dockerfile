@@ -20,4 +20,5 @@ RUN pipenv install lightgbm
 RUN pipenv install youtube-dlc
 #RUN pipenv shell
 
-CMD pipenv run gunicorn --bind 0.0.0.0:$PORT wsgi 
+CMD pipenv run gunicorn app:app 
+#--bind 0.0.0.0:$PORT wsgi 
